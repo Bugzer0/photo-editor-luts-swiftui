@@ -7,24 +7,44 @@
 //
 
 import SwiftUI
+import BrightroomEngine
+import BrightroomUI
 
 struct PhotoEditorView: View {
     
-    @EnvironmentObject  var shared:PECtl
+    @EnvironmentObject var shared: PECtl
+    @State private var brushSize: CanvasView.BrushSize = .point(30)
     
     var body: some View {
-        ZStack{
-            VStack(spacing: 0){
-                if let image = shared.previewImage{
-                    ImagePreviewView(image: image)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .clipped()
-                }else{
+        ZStack {
+            VStack(spacing: 0) {
+                if let image = shared.previewImage {
+                    ZStack {
+                        ImagePreviewView(image: image)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .clipped()
+                        
+                        if shared.currentEditMenu == .mask {
+                            if let stack = shared.brightroomEditingStack {
+                                SwiftUIBlurryMaskingView(editingStack: stack)
+                                    .blushSize(brushSize)
+                                    .hideBackdropImageView(true)
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .allowsHitTesting(shared.currentEditMenu == .mask)
+                            }
+                        }
+                    }
+                } else {
                     Rectangle()
                         .fill(Color.myGrayDark)
                 }
                 EditMenuView()
                     .frame(height: 250)
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("UpdateMaskBrushSize"))) { notification in
+            if let size = notification.userInfo?["size"] as? Double {
+                brushSize = .point(size)
             }
         }
     }

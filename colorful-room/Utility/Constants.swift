@@ -17,5 +17,6 @@ public class Constants{
         FilterModel("Tone",image: "tone", edit: EditMenu.tone),
         FilterModel("HSL",image: "hls", edit: EditMenu.hls),
         FilterModel("Fade", edit: EditMenu.fade),
+        FilterModel("Mask", edit: EditMenu.mask),
     ]
 }

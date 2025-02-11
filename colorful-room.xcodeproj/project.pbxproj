@@ -81,6 +81,7 @@
 		E7F5614E2D5AF41C0029FC0E /* BrightroomEngine in Frameworks */ = {isa = PBXBuildFile; productRef = E7F5614D2D5AF41C0029FC0E /* BrightroomEngine */; };
 		E7F561502D5AF41C0029FC0E /* BrightroomUI in Frameworks */ = {isa = PBXBuildFile; productRef = E7F5614F2D5AF41C0029FC0E /* BrightroomUI */; };
 		E7F561522D5AF41C0029FC0E /* BrightroomUIPhotosCrop in Frameworks */ = {isa = PBXBuildFile; productRef = E7F561512D5AF41C0029FC0E /* BrightroomUIPhotosCrop */; };
+		E7F5615C2D5B54FC0029FC0E /* MaskControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F5615B2D5B54FC0029FC0E /* MaskControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +178,7 @@
 		59B31A89271DA892002DADE8 /* AppContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppContent.swift; sourceTree = "<group>"; };
 		91676B46D8DB0C5B8B5F9F42 /* Pods-colorful-room.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-colorful-room.release.xcconfig"; path = "Target Support Files/Pods-colorful-room/Pods-colorful-room.release.xcconfig"; sourceTree = "<group>"; };
 		C2ED19D827B9DE0F5467A29B /* Pods_colorful_room.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_colorful_room.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7F5615B2D5B54FC0029FC0E /* MaskControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,6 +393,7 @@
 				59B31A3F271DA841002DADE8 /* SaturationControl.swift */,
 				59B31A40271DA841002DADE8 /* ColorCubeControl.swift */,
 				59B31A41271DA841002DADE8 /* HighlightsControl.swift */,
+				E7F5615B2D5B54FC0029FC0E /* MaskControl.swift */,
 				59B31A42271DA841002DADE8 /* ClarityControl.swift */,
 				59B31A43271DA842002DADE8 /* VignetteControl.swift */,
 				59B31A44271DA842002DADE8 /* ToneControl.swift */,
@@ -689,6 +692,7 @@
 				59B31A59271DA842002DADE8 /* LUTButton.swift in Sources */,
 				59B31A61271DA842002DADE8 /* SharpenControl.swift in Sources */,
 				59B31A68271DA842002DADE8 /* ColorSelectButton.swift in Sources */,
+				E7F5615C2D5B54FC0029FC0E /* MaskControl.swift in Sources */,
 				59B31A6E271DA842002DADE8 /* FadeControl.swift in Sources */,
 				59752CFB286AC272001F919C /* FiltersController.swift in Sources */,
 				592B4E5327132BF400BBF5BA /* ContentView.swift in Sources */,

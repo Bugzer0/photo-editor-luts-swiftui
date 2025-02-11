@@ -27,6 +27,7 @@ public enum EditMenu {
     case hls
     case tone
     case white_balance
+    case mask
 }
 
 class FilterModel{
