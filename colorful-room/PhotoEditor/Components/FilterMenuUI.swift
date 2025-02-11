@@ -80,6 +80,10 @@ struct FilterMenuUI: View {
                     Spacer()
                     HStack{
                         Button(action: {
+                            if shared.currentEditMenu == .mask {
+                                // Chỉ revert phiên vẽ hiện tại
+                                shared.brightroomEditingStack?.revertEdit()
+                            }
                             self.shared.didReceive(action: PECtlAction.revert)
                             self.shared.currentFilter = FilterModel.noneFilterModel
                         }){
@@ -92,7 +96,13 @@ struct FilterMenuUI: View {
                             .foregroundColor(Color.myGrayLight)
                         Spacer()
                         Button(action: {
-                            self.shared.didReceive(action: PECtlAction.commit)
+                            if shared.currentEditMenu == .mask {
+                                // Lưu lại phiên vẽ hiện tại vào history
+                                shared.brightroomEditingStack?.takeSnapshot()
+                                self.shared.didReceive(action: PECtlAction.commit)
+                            } else {
+                                self.shared.didReceive(action: PECtlAction.commit)
+                            }
                             self.shared.currentFilter = FilterModel.noneFilterModel
                         }){
                             Image(systemName: "checkmark")

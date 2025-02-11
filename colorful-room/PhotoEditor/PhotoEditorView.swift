@@ -19,19 +19,17 @@ struct PhotoEditorView: View {
         ZStack {
             VStack(spacing: 0) {
                 if let image = shared.previewImage {
-                    ZStack {
-                        ImagePreviewView(image: image)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .clipped()
-                        
-                        if shared.currentEditMenu == .mask {
-                            if let stack = shared.brightroomEditingStack {
-                                SwiftUIBlurryMaskingView(editingStack: stack)
-                                    .blushSize(brushSize)
-                                    .hideBackdropImageView(true)
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .allowsHitTesting(shared.currentEditMenu == .mask)
-                            }
+                    if let stack = shared.brightroomEditingStack {
+                        ZStack {
+                            ImagePreviewView(image: image)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .clipped()
+                            
+                            SwiftUIBlurryMaskingView(editingStack: stack)
+                                .blushSize(brushSize)
+                                .hideBackdropImageView(true)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .allowsHitTesting(shared.currentEditMenu == .mask)
                         }
                     }
                 } else {
