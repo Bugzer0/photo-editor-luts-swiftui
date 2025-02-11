@@ -13,6 +13,7 @@ public class Constants{
         FilterModel("Contrast", edit: EditMenu.contrast),
         FilterModel("Saturation", edit: EditMenu.saturation),
         FilterModel("White Blance",image:"temperature", edit: EditMenu.white_balance),
+        FilterModel("Clarity", edit: EditMenu.clarity),
         FilterModel("Tone",image: "tone", edit: EditMenu.tone),
         FilterModel("HSL",image: "hls", edit: EditMenu.hls),
         FilterModel("Fade", edit: EditMenu.fade),

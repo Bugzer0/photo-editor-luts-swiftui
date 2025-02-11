@@ -7,45 +7,65 @@
 //
 
 import SwiftUI
-import PixelEnginePackage
+import BrightroomEngine
+import BrightroomUI
 
-struct ClarityCode: View {
-    @State var filterIntensity:Double = 0
+struct ClarityControl: View {
+    @State var filterIntensity: Double = 0
+    @EnvironmentObject var shared: PECtl
     
     var body: some View {
-        
         let intensity = Binding<Double>(
             get: {
                 self.filterIntensity
-        },
+            },
             set: {
                 self.filterIntensity = $0
                 self.valueChanged()
-        }
+            }
         )
         
-        return  FilterSlider(value: intensity, range: (0, 1), defaultValue: 0, rangeDisplay: (0, 100))
-        .onAppear(perform: didReceiveCurrentEdit)
+        return FilterSlider(value: intensity,
+                          range: (0, 1),
+                          defaultValue: 0)
+            .onAppear(perform: didReceiveCurrentEdit)
     }
     
     func didReceiveCurrentEdit() {
-        
-        let edit: EditingStack.Edit = PECtl.shared.editState.currentEdit
-        self.filterIntensity = edit.filters.unsharpMask?.intensity ?? 0
+        if let stack = shared.brightroomEditingStack {
+            if let loadedState = stack.store.state.loadedState {
+                self.filterIntensity = loadedState.currentEdit.filters.unsharpMask?.intensity ?? 0
+            }
+        }
     }
     
     func valueChanged() {
-        
         let value = self.filterIntensity
         
-        guard value != 0 else {
-            PECtl.shared.didReceive(action: PECtlAction.setFilter({ $0.unsharpMask = nil }))
-            return
+        if let stack = shared.brightroomEditingStack {
+            if value == 0 {
+                stack.set(filters: {
+                    $0.unsharpMask = nil
+                })
+                PECtl.shared.didReceive(action: PECtlAction.setFilter({ $0.unsharpMask = nil }))
+            } else {
+                // Cập nhật cho BrightroomEngine
+                stack.set(filters: {
+                    var filter = BrightroomEngine.FilterUnsharpMask()
+                    filter.intensity = value
+                    filter.radius = 0.12
+                    $0.unsharpMask = filter
+                })
+                
+                // Cập nhật cho preview thông qua PECtl
+                PECtl.shared.didReceive(action: PECtlAction.setFilter({ filters in
+                    if filters.unsharpMask == nil {
+                        filters.unsharpMask = .init()
+                    }
+                    filters.unsharpMask?.intensity = value
+                    filters.unsharpMask?.radius = 0.12
+                }))
+            }
         }
-        
-        var f = FilterUnsharpMask()
-        f.intensity = value
-        f.radius = 0.12
-        PECtl.shared.didReceive(action: PECtlAction.setFilter({ $0.unsharpMask = f }))
     }
 }

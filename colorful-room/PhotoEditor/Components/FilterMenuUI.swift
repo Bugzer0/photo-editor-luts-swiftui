@@ -69,6 +69,8 @@ struct FilterMenuUI: View {
                         ToneControl()
                     }else if index == .white_balance {
                         WhiteBalanceControl()
+                    }else if index == .clarity {
+                        ClarityControl()
                     }else{
                         Text("Todo")
                     }
