@@ -12,6 +12,8 @@ import SwiftUI
 import PixelEnginePackage
 import QCropper
 import CoreData
+import BrightroomEngine
+import BrightroomUI
 
 class PECtl : ObservableObject{
     
@@ -34,8 +36,11 @@ class PECtl : ObservableObject{
     @NestedObservableObject
     var recipesCtrl:RecipeController = RecipeController()
     
+    // EditingStack for PixelEngine
+    var editState: PixelEnginePackage.EditingStack!
     
-    var editState: EditingStack!
+    // EditingStack for Brightroom
+    @Published var brightroomEditingStack: BrightroomEngine.EditingStack?
     
     var currentEditMenu:EditMenu{
         get{
@@ -62,35 +67,18 @@ class PECtl : ObservableObject{
         }
     }
     
-    func setImage(image:UIImage) {
-        
-        /// resetUI
-        if(lutsCtrl.loadingLut == true){
-            return
-        }
-        currentFilter = FilterModel.noneFilterModel
+    func setImage(image: UIImage) {
         self.originUI = image
+        self.originCI = CIImage(image: image)
         
-        self.originCI = convertUItoCI(from: image)
+        // Khởi tạo EditingStack cho PixelEngine
+        self.editState = PixelEnginePackage.EditingStack(source: PixelEnginePackage.StaticImageSource(source: self.originCI))
         
-        self.editState = EditingStack.init(
-            source: StaticImageSource(source: self.originCI!),
-            // todo: need more code to caculator adjust with scale image
-            previewSize: CGSize(width: 512, height: 512 * self.originUI.size.width / self.originUI.size.height)
-            // previewSize: CGSize(width: self.originUI.size.width, height: self.originUI.size.height)
-        )
-       
+        // Khởi tạo EditingStack cho Brightroom
+        let provider = BrightroomEngine.ImageProvider(image: image)
+        self.brightroomEditingStack = BrightroomEngine.EditingStack(imageProvider: provider)
         
-        if let smallImage = resizedImage(at: originCI, scale: 128 / self.originUI.size.height, aspectRatio: 1){
-            lutsCtrl.setImage(image: smallImage)
-            recipesCtrl.setImage(image: smallImage)
-        }
-        
-        cropperCtrl = CropperController()
-
-        DispatchQueue.global(qos: .background).async{
-            self.apply()
-        }
+        self.apply()
     }
     
     
@@ -130,7 +118,7 @@ class PECtl : ObservableObject{
     
     
     var count:Int  = 0
-    func setFilterDelay(filters: (inout EditingStack.Edit.Filters) -> Void) {
+    func setFilterDelay(filters: (inout PixelEnginePackage.EditingStack.Edit.Filters) -> Void) {
         currentRecipe = nil
         self.count = self.count + 1
         let currentCount = self.count
@@ -162,7 +150,7 @@ class PECtl : ObservableObject{
     ///
     func onApplyRecipe(_ data:RecipeObject) {
         
-        let colorCube:FilterColorCube? = Data.shared.cubeBy(identifier: data.lutIdentifier ?? "")
+        let colorCube:PixelEnginePackage.FilterColorCube? = Data.shared.cubeBy(identifier: data.lutIdentifier ?? "")
         self.currentRecipe = data
         
         self.editState.set(filters: RecipeUtils.applyRecipe(data, colorCube: colorCube))

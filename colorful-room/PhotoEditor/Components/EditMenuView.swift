@@ -7,7 +7,48 @@
 //
 
 import SwiftUI
-import QCropper
+import BrightroomEngine
+import BrightroomUI
+import BrightroomUIPhotosCrop
+
+struct CropView: View {
+    @Environment(\.presentationMode) var presentationMode
+    let editingStack: () -> BrightroomEngine.EditingStack
+    let onComplete: (BrightroomEngine.EditingStack) -> Void
+    
+    var body: some View {
+        ZStack {
+            PhotosCropRotating(editingStack: editingStack)
+            
+            VStack {
+                HStack {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("Hủy")
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        onComplete(editingStack())
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("Xong")
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                }
+                .padding(.top, 44)
+                
+                Spacer()
+            }
+        }
+        .navigationBarHidden(true)
+    }
+}
 
 struct EditMenuView: View {
     
@@ -22,9 +63,19 @@ struct EditMenuView: View {
                    && self.shared.lutsCtrl.editingLut == false){
                     HStack(spacing: 48){
                         NavigationLink(destination:
-                                        CustomCropperView()
-                                        .navigationBarTitle("")
-                                        .navigationBarHidden(true)
+                                        CropView(
+                                            editingStack: {
+                                                self.shared.brightroomEditingStack!
+                                            },
+                                            onComplete: { stack in
+                                                do {
+                                                    let rendered = try stack.makeRenderer().render()
+                                                    self.shared.setImage(image: rendered.uiImage)
+                                                } catch {
+                                                    print("Error rendering cropped image: \(error)")
+                                                }
+                                            }
+                                        )
                         ){
                             IconButton("adjustment")
                         }
