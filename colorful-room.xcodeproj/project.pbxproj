@@ -78,6 +78,9 @@
 		59B31A96271DA892002DADE8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B31A88271DA892002DADE8 /* Utils.swift */; };
 		59B31A97271DA892002DADE8 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B31A89271DA892002DADE8 /* AppContent.swift */; };
 		B99615FFF8B1F2C3A8EE01C7 /* Pods_colorful_room.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2ED19D827B9DE0F5467A29B /* Pods_colorful_room.framework */; };
+		E7F5614E2D5AF41C0029FC0E /* BrightroomEngine in Frameworks */ = {isa = PBXBuildFile; productRef = E7F5614D2D5AF41C0029FC0E /* BrightroomEngine */; };
+		E7F561502D5AF41C0029FC0E /* BrightroomUI in Frameworks */ = {isa = PBXBuildFile; productRef = E7F5614F2D5AF41C0029FC0E /* BrightroomUI */; };
+		E7F561522D5AF41C0029FC0E /* BrightroomUIPhotosCrop in Frameworks */ = {isa = PBXBuildFile; productRef = E7F561512D5AF41C0029FC0E /* BrightroomUIPhotosCrop */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,9 +184,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7F561522D5AF41C0029FC0E /* BrightroomUIPhotosCrop in Frameworks */,
 				597CAB9F271E6B45008E9588 /* StoreKit.framework in Frameworks */,
 				59B31A1D271DA5B2002DADE8 /* PixelEnginePackage in Frameworks */,
+				E7F561502D5AF41C0029FC0E /* BrightroomUI in Frameworks */,
 				B99615FFF8B1F2C3A8EE01C7 /* Pods_colorful_room.framework in Frameworks */,
+				E7F5614E2D5AF41C0029FC0E /* BrightroomEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +480,9 @@
 			name = "colorful-room";
 			packageProductDependencies = (
 				59B31A1C271DA5B2002DADE8 /* PixelEnginePackage */,
+				E7F5614D2D5AF41C0029FC0E /* BrightroomEngine */,
+				E7F5614F2D5AF41C0029FC0E /* BrightroomUI */,
+				E7F561512D5AF41C0029FC0E /* BrightroomUIPhotosCrop */,
 			);
 			productName = "colorful-room";
 			productReference = 592B4E4D27132BF400BBF5BA /* colorful-room.app */;
@@ -549,6 +558,7 @@
 			mainGroup = 592B4E4427132BF400BBF5BA;
 			packageReferences = (
 				59B31A1B271DA5B2002DADE8 /* XCRemoteSwiftPackageReference "PixelEnginePackage" */,
+				E7F5614C2D5AF41C0029FC0E /* XCRemoteSwiftPackageReference "Brightroom" */,
 			);
 			productRefGroup = 592B4E4E27132BF400BBF5BA /* Products */;
 			projectDirPath = "";
@@ -855,6 +865,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"colorful-room/Preview Content\"";
@@ -871,7 +882,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -892,6 +903,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"colorful-room/Preview Content\"";
@@ -908,7 +920,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1069,6 +1081,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		E7F5614C2D5AF41C0029FC0E /* XCRemoteSwiftPackageReference "Brightroom" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FluidGroup/Brightroom";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1076,6 +1096,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 59B31A1B271DA5B2002DADE8 /* XCRemoteSwiftPackageReference "PixelEnginePackage" */;
 			productName = PixelEnginePackage;
+		};
+		E7F5614D2D5AF41C0029FC0E /* BrightroomEngine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E7F5614C2D5AF41C0029FC0E /* XCRemoteSwiftPackageReference "Brightroom" */;
+			productName = BrightroomEngine;
+		};
+		E7F5614F2D5AF41C0029FC0E /* BrightroomUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E7F5614C2D5AF41C0029FC0E /* XCRemoteSwiftPackageReference "Brightroom" */;
+			productName = BrightroomUI;
+		};
+		E7F561512D5AF41C0029FC0E /* BrightroomUIPhotosCrop */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E7F5614C2D5AF41C0029FC0E /* XCRemoteSwiftPackageReference "Brightroom" */;
+			productName = BrightroomUIPhotosCrop;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -1,16 +1,105 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "PixelEnginePackage",
-        "repositoryURL": "https://github.com/j1mmyto9/PixelEnginePackage",
-        "state": {
-          "branch": null,
-          "revision": "d3eaf69accc4396f807fe8497efe03f4f33c5763",
-          "version": "1.0.0"
-        }
+  "originHash" : "75a29c7600a2104d9347231ad138c64019c74afe282c3c2ea1ecc1ace19e87bf",
+  "pins" : [
+    {
+      "identity" : "brightroom",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/FluidGroup/Brightroom",
+      "state" : {
+        "revision" : "d2422b767e1821fd8bacb9643b9500c407f478a0",
+        "version" : "3.0.1"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "pixelenginepackage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/j1mmyto9/PixelEnginePackage",
+      "state" : {
+        "revision" : "d3eaf69accc4396f807fe8497efe03f4f33c5763",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "precisionlevelslider",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/FluidGroup/PrecisionLevelSlider",
+      "state" : {
+        "revision" : "d16becc518758b6f984ff07f8e8c6a0fa9245492",
+        "version" : "2.2.0"
+      }
+    },
+    {
+      "identity" : "rxswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ReactiveX/RxSwift.git",
+      "state" : {
+        "revision" : "c7c7d2cf50a3211fe2843f76869c698e4e417930",
+        "version" : "6.8.0"
+      }
+    },
+    {
+      "identity" : "swift-atomics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-atomics.git",
+      "state" : {
+        "revision" : "cd142fd2f64be2100422d658e7411e39489da985",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "swift-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-collections",
+      "state" : {
+        "revision" : "671108c96644956dddcd89dd59c203dcdb36cec7",
+        "version" : "1.1.4"
+      }
+    },
+    {
+      "identity" : "swift-concurrency-task-manager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/VergeGroup/swift-concurrency-task-manager",
+      "state" : {
+        "revision" : "340cf14e0282977deeeb436605d1810ce4f4fbc9",
+        "version" : "1.4.0"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-syntax.git",
+      "state" : {
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
+      }
+    },
+    {
+      "identity" : "swiftui-hosting",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/FluidGroup/swiftui-Hosting",
+      "state" : {
+        "revision" : "975f2565cff7625f610c36cd7c146d8ab104a1dc",
+        "version" : "2.3.0"
+      }
+    },
+    {
+      "identity" : "transitionpatch",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/FluidGroup/TransitionPatch",
+      "state" : {
+        "revision" : "88aac5305fe568ef62f73a3cf19f0b8392ffb52c",
+        "version" : "1.0.5"
+      }
+    },
+    {
+      "identity" : "verge",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/VergeGroup/Verge",
+      "state" : {
+        "revision" : "ea8f1e54ceec3078215762ca6ea73c7b93fc266c",
+        "version" : "12.5.0"
+      }
+    }
+  ],
+  "version" : 3
 }
